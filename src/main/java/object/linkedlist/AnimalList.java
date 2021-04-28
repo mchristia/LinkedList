@@ -20,7 +20,7 @@ public class AnimalList {
             if(iterable.next != null){
                 allnames = allnames+ " -> ";
             }
-            iterable = iterable.next;
+            iterable = iterable.getNext();
         }
        return allnames;
     }
@@ -35,5 +35,40 @@ public class AnimalList {
             }
             iterable.setNext(new AnimalListItem(animal));
         }
+    }
+
+    public void remove(Animal animal){
+        if(head == null){
+            return;
+        }
+        AnimalListItem iterable = head;
+        AnimalListItem secondLastItem;
+        if(iterable.getNext() != null){
+            while(iterable.getNext() != null){
+                if(iterable.getNext().getNext() != null) {
+                    if (animal.getName().equals(iterable.getValue().getName())) {
+                        iterable.setValue(iterable.getNext().getValue());
+                        iterable.setNext(iterable.getNext().getNext());
+                        return;
+                    }
+                    iterable = iterable.getNext();
+                    continue;
+                }
+                if (animal.getName().equals(iterable.getValue().getName())) {
+                    iterable.setValue(iterable.getNext().getValue());
+                    iterable.setNext(iterable.getNext().getNext());
+                    return;
+                }
+
+            }
+            if(animal.getName().equals(iterable.getValue().getName())){
+                iterable
+            }
+        }else{
+            if(animal.getName().equals(iterable.getValue().getName())){
+                iterable.getValue().setName("");
+            }
+        }
+
     }
 }

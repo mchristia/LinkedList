@@ -22,4 +22,8 @@ public class AnimalListItem {
     public void setNext(AnimalListItem next) {
         this.next = next;
     }
+
+    public void setValue(Animal value) {
+        this.value = value;
+    }
 }
