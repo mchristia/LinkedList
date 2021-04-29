@@ -43,7 +43,6 @@ public class AnimalListTest {
         String expected = "a -> b -> c -> d";
 
         assertEquals(expected, actual);
-
     }
 
 }

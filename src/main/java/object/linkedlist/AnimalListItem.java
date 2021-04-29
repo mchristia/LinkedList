@@ -26,4 +26,9 @@ public class AnimalListItem {
     public void setValue(Animal value) {
         this.value = value;
     }
+
+    @Override
+    public String toString() {
+        return value.toString();
+    }
 }

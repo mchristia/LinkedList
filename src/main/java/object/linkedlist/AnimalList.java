@@ -1,5 +1,8 @@
 package object.linkedlist;
 
+import javax.print.attribute.standard.RequestingUserName;
+import java.util.Objects;
+
 public class AnimalList {
     AnimalListItem head;
 
@@ -13,6 +16,11 @@ public class AnimalList {
 
     @Override
     public String toString() {
+        if(head == null){
+            return "";
+        }
+
+        StringBuilder builder = new StringBuilder(head.getValue().toString());
         AnimalListItem iterable = head;
         String allnames = "";
         while(iterable !=null){
@@ -37,6 +45,10 @@ public class AnimalList {
         }
     }
 
+    public AnimalListItem isLastItem(AnimalListItem item){
+        return item.getNext() == null ? item : isLastItem(item.getNext());
+    }
+
     public void remove(Animal animal){
         if(head == null){
             return;
@@ -52,13 +64,14 @@ public class AnimalList {
                         return;
                     }
                     iterable = iterable.getNext();
-                    continue;
+                }else{
+                    if (animal.getName().equals(iterable.getValue().getName())) {
+                        iterable.setValue(iterable.getNext().getValue());
+                        iterable.setNext(iterable.getNext().getNext());
+                        return;
+                    }
                 }
-                if (animal.getName().equals(iterable.getValue().getName())) {
-                    iterable.setValue(iterable.getNext().getValue());
-                    iterable.setNext(iterable.getNext().getNext());
-                    return;
-                }
+
 
             }
             if(animal.getName().equals(iterable.getValue().getName())){
@@ -69,6 +82,26 @@ public class AnimalList {
                 iterable.getValue().setName("");
             }
         }
+    }
 
+    public void removeMasterSolution(Animal animal){
+        while(head != null && head.getValue().equals(animal)){
+            head = head.getNext();
+        }
+
+        if(head == null){
+            return;
+        }
+
+        AnimalListItem iterable = head;
+
+        while(iterable.getNext() != null){
+            if(Objects.equals(iterable.getNext().getValue(), animal)){
+                iterable.setNext(iterable.getNext().getNext());
+            }else{
+                iterable = iterable.getNext();
+            }
+
+        }
     }
 }
